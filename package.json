@@ -1,0 +1,29 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production",
+        "build": "npm run prod"
+    },
+    "devDependencies": {
+        "@babel/preset-react": "^7.29.7",
+        "@types/react": "^19.2.18",
+        "@types/react-dom": "^19.2.5",
+        "axios": "^0.25",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "react": "^19.2.8",
+        "react-dom": "^19.2.8",
+        "ts-loader": "^9.6.2",
+        "typescript": "^5.5.4"
+    },
+    "overrides": {
+        "webpack": "5.99.9"
+    }
+}
