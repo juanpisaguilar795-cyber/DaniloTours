@@ -12,9 +12,39 @@
 */
 
 $app = new class($_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)) extends Illuminate\Foundation\Application {
+    protected function isVercel()
+    {
+        return file_exists('/var/task') || isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']);
+    }
+
     public function bootstrapCachePath()
     {
-        return $_ENV['APP_BOOTSTRAP_CACHE_PATH'] ?? $_SERVER['APP_BOOTSTRAP_CACHE_PATH'] ?? parent::bootstrapCachePath();
+        return $this->isVercel() ? '/tmp' : parent::bootstrapCachePath();
+    }
+
+    public function getCachedPackagesPath()
+    {
+        return $this->isVercel() ? '/tmp/packages.php' : parent::getCachedPackagesPath();
+    }
+
+    public function getCachedServicesPath()
+    {
+        return $this->isVercel() ? '/tmp/services.php' : parent::getCachedServicesPath();
+    }
+
+    public function getCachedConfigPath()
+    {
+        return $this->isVercel() ? '/tmp/config.php' : parent::getCachedConfigPath();
+    }
+
+    public function getCachedRoutesPath()
+    {
+        return $this->isVercel() ? '/tmp/routes.php' : parent::getCachedRoutesPath();
+    }
+
+    public function getCachedEventsPath()
+    {
+        return $this->isVercel() ? '/tmp/events.php' : parent::getCachedEventsPath();
     }
 };
 
