@@ -22,6 +22,7 @@
     "LOG_CHANNEL": "stderr",
     "SESSION_DRIVER": "cookie",
     "CACHE_DRIVER": "array",
-    "VIEW_COMPILED_PATH": "/tmp"
+    "VIEW_COMPILED_PATH": "/tmp",
+    "APP_BOOTSTRAP_CACHE_PATH": "/tmp"
   }
 }
