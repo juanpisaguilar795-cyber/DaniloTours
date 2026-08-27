@@ -36,12 +36,18 @@ class AppServiceProvider extends ServiceProvider
     protected function setupVercelDatabase()
     {
         try {
-            // Set connection configuration dynamically to sqlite :memory:
+            // Create a physical SQLite database file in the writable /tmp folder
+            $dbPath = '/tmp/database.sqlite';
+            if (!file_exists($dbPath)) {
+                touch($dbPath);
+            }
+
+            // Set connection configuration dynamically to the physical SQLite file
             config([
                 'database.default' => 'sqlite',
                 'database.connections.sqlite' => [
                     'driver' => 'sqlite',
-                    'database' => ':memory:',
+                    'database' => $dbPath,
                     'prefix' => '',
                     'foreign_key_constraints' => true,
                 ]
@@ -51,7 +57,7 @@ class AppServiceProvider extends ServiceProvider
             \Illuminate\Support\Facades\DB::purge('sqlite');
             \Illuminate\Support\Facades\DB::reconnect('sqlite');
 
-            // Run migrations and seeders if the users table doesn't exist in memory
+            // Run migrations and seeders if the users table doesn't exist in the file
             if (!\Illuminate\Support\Facades\Schema::hasTable('users')) {
                 \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
                 \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
