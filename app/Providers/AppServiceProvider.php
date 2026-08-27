@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app->environment('production') || file_exists('/var/task')) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
     }
 }
