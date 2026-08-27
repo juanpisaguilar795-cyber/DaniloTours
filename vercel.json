@@ -23,6 +23,11 @@
     "SESSION_DRIVER": "cookie",
     "CACHE_DRIVER": "array",
     "VIEW_COMPILED_PATH": "/tmp",
-    "APP_BOOTSTRAP_CACHE_PATH": "/tmp"
+    "APP_BOOTSTRAP_CACHE_PATH": "/tmp",
+    "APP_PACKAGES_CACHE_PATH": "/tmp/packages.php",
+    "APP_SERVICES_CACHE_PATH": "/tmp/services.php",
+    "APP_CONFIG_CACHE_PATH": "/tmp/config.php",
+    "APP_ROUTES_CACHE_PATH": "/tmp/routes.php",
+    "APP_EVENTS_CACHE_PATH": "/tmp/events.php"
   }
 }
